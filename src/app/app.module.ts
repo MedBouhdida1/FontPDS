@@ -25,6 +25,7 @@ import { NgToastModule } from 'ng-angular-popup';
     RegisterComponent,
     ForbiddenComponent,
 
+
   ],
   imports: [
     BrowserModule,

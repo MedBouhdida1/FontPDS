@@ -1,10 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {
+
+  private jwtHelper: JwtHelperService = new JwtHelperService();
+
 
 
   baseurl = "http://localhost:8282/";
@@ -67,5 +71,17 @@ export class UserAuthService {
 
   public isLoggedIn() {
     return this.getToken() && this.getRoles();
+  }
+
+
+  getSubjectFromToken(): string {
+    const token = this.getToken();
+
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken.sub;
+    }
+
+    return "erreur";
   }
 }
