@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { SupervisorServicesService } from '../Services/supervisor-services.service';
 import { Project } from '../../_Models/project.model';
-import { UserAuthService } from '../../_Services/user-auth.service';
 import { Supervisor } from '../../_Models/supervisor.model';
+import { SupervisorServicesService } from '../Services/supervisor-services.service';
+import { UserAuthService } from '../../_Services/user-auth.service';
+
+
 
 @Component({
-  selector: 'app-projects-lists',
-  templateUrl: './projects-lists.component.html',
-  styleUrl: './projects-lists.component.css'
+  selector: 'app-my-projects',
+  templateUrl: './my-projects.component.html',
+  styleUrl: './my-projects.component.css'
 })
-export class ProjectsListsComponent implements OnInit {
+export class MyProjectsComponent implements OnInit {
 
 
   ListProjet: Project[] = [];
-  supervisorId: number = 0;
   supervisor = new Supervisor();
   project = new Project();
   constructor(
@@ -25,7 +26,7 @@ export class ProjectsListsComponent implements OnInit {
 
   // Add project
   addProject(Project: Project) {
-    this.supervisorServices.addProject(Project, this.supervisorId).subscribe(res => {
+    this.supervisorServices.addProject(Project, this.supervisor.id!).subscribe(res => {
       console.log(res);
     })
 
@@ -52,12 +53,7 @@ export class ProjectsListsComponent implements OnInit {
   //   );
   // }
 
-  // getUser() {
-  //   console.log(this.userAuthService.getSubjectFromToken());
-  //   this.supervisorServices.getSupervisorByName(this.userAuthService.getSubjectFromToken()).subscribe(res => {
-  //     this.supervisor = res;
-  //   })
-  // }
+
 
   ngOnInit(): void {
 

@@ -2,16 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SupervisorRoutingModule } from './supervisor-routing.module';
-import { ProjectsListsComponent } from './projects-lists/projects-lists.component';
+import { SharedModule } from '../shared/shared.module';
+import { MyProjectsComponent } from './my-projects/my-projects.component';
 
 
 @NgModule({
   declarations: [
-    ProjectsListsComponent
+  
+    MyProjectsComponent
   ],
   imports: [
     CommonModule,
-    SupervisorRoutingModule
+    SupervisorRoutingModule,
+    SharedModule
   ]
 })
 export class SupervisorModule { }

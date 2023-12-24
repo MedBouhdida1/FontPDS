@@ -1,3 +1,5 @@
+import { Supervisor } from "./supervisor.model";
+
 export class Project {
 
     constructor(
@@ -6,6 +8,7 @@ export class Project {
         public description?: string,
         public timeline?: string,
         public document?: any,
+        public supervisorId?: Supervisor
 
 
     ) {
