@@ -31,17 +31,7 @@ export class ProjectsListComponent implements OnInit {
 
   }
 
-  // getProjectBySupervisorId() {
 
-  //   this.supervisorServices.getSupervisorByName(this.userAuthService.getSubjectFromToken()).subscribe(res => {
-  //     this.supervisor = res;
-  //     this.supervisorServices.getprojectsBySupervisorId(this.supervisor.id!).subscribe(res => {
-  //       this.ListProjet = res;
-  //       console.log(this.ListProjet);
-  //     })
-
-  //   })
-  // }
 
   getAllProjects() {
     this.supervisorServices.getAllProjects().subscribe(
@@ -52,12 +42,7 @@ export class ProjectsListComponent implements OnInit {
     );
   }
 
-  // getUser() {
-  //   console.log(this.userAuthService.getSubjectFromToken());
-  //   this.supervisorServices.getSupervisorByName(this.userAuthService.getSubjectFromToken()).subscribe(res => {
-  //     this.supervisor = res;
-  //   })
-  // }
+
 
   ngOnInit(): void {
 

@@ -3,7 +3,7 @@ import { Supervisor } from "./supervisor.model";
 export class Project {
 
     constructor(
-        public id?: number,
+        public id?: string,
         public title?: string,
         public description?: string,
         public timeline?: string,

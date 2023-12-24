@@ -1,29 +1,9 @@
 <div class="container-scroller">
 
-
     <app-navbar></app-navbar>
     <div class="container-fluid page-body-wrapper">
-        <div class="theme-setting-wrapper">
-            <div id="settings-trigger"><i class="ti-settings"></i></div>
-            <div id="theme-settings" class="settings-panel">
-                <i class="settings-close ti-close"></i>
-                <p class="settings-heading">SIDEBAR SKINS</p>
-                <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-                    <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
-                </div>
-                <div class="sidebar-bg-options" id="sidebar-dark-theme">
-                    <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-                </div>
-                <p class="settings-heading mt-2">HEADER SKINS</p>
-                <div class="color-tiles mx-0 px-4">
-                    <div class="tiles success"></div>
-                    <div class="tiles warning"></div>
-                    <div class="tiles danger"></div>
-                    <div class="tiles info"></div>
-                    <div class="tiles dark"></div>
-                    <div class="tiles default"></div>
-                </div>
-            </div>
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
         </div>
         <div id="right-sidebar" class="settings-panel">
             <i class="settings-close ti-close"></i>
@@ -190,140 +170,7 @@
         <app-sidebar></app-sidebar>
         <div class="main-panel">
             <div class="content-wrapper">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="card-title title">My projects</h3>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addproject">Add
-                        Project</button>
-                </div>
-
-
-
-                <div id="accordion">
-                    @for (project of ListProjet; track project.id) {
-
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <button class="btn btn-link" data-toggle="collapse"
-                                [attr.data-target]="'#collapseOne'+ project.id" aria-expanded="false"
-                                aria-controls="collapseOne">
-
-                                <h4 class="card-title"> {{project.title}}</h4>
-                            </button>
-                            <div class="d-flex justify-content-end">
-                                <button routerLink="/team/{{project.id}}" type="button" class="btn btn-info">View My
-                                    Team</button>
-                            </div>
-
-                        </div>
-
-                        <div id="collapseOne{{project.id}}" class="collapse" aria-labelledby="headingOne"
-                            data-parent="#accordion">
-                            <div class="card-body">
-                                <h4 class="card-title text-info">Supervisor : <span class="card-title">
-                                        {{project.supervisorId?.name}}</span>
-                                </h4>
-                                <p></p>
-                                <h4 class=" card-title text-info">Description : </h4>
-
-                                <blockquote class="blockquote">
-                                    <p class="mb-0">{{project.description}}</p>
-                                </blockquote>
-                                <h4 class="card-title text-info">Timeline : <span class="card-title">
-                                        {{project.timeline}}</span></h4>
-                                <div class="d-flex justify-content-end"> <button class="btn btn-danger  "
-                                        id="modal-button" data-toggle="modal" data-target="#my-modal"
-                                        (click)="openModal(project.id!)">
-                                        Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    }
-                    @empty {
-                    <app-no-data></app-no-data>
-                    }
-
-
-                </div>
             </div>
             <app-footer></app-footer>
 
         </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="addproject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" #myModal
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form #myForm="ngForm">
-
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <label for="title" class="col-sm-2 col-form-label">Project Title</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="title" placeholder="Title"
-                                [(ngModel)]="project.title" name="title" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="timeline" class="col-sm-2 col-form-label">Timeline</label>
-                        <div class="col-sm-10">
-                            <input type="date" class="form-control" id="timeline" placeholder="Timeline"
-                                [(ngModel)]="project.timeline" name="timeline" required>
-                        </div>
-                    </div>
-                    <div class=" form-group row">
-                        <label for="textarea" class="col-sm-2 col-form-label">Additional Description</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" id="textarea" rows="3" placeholder="Enter Description"
-                                [(ngModel)]="project.description" name="description" required></textarea>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" (click)="addProject(project)" class="btn btn-primary">Add</button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-<div class="container d-flex justify-content-center">
-
-    <div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content border-0">
-                <div class="modal-body p-0">
-                    <div class="card border-0 p-sm-3 p-2 justify-content-center">
-                        <div class="card-header pb-0 bg-white border-0 ">
-                            <div class="row">
-                                <div class="col ml-auto"><button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div>
-                            </div>
-                            <p class="font-weight-bold mb-2"> Are you sure you wanna delete this ?</p>
-                        </div>
-                        <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
-                            <div class="row justify-content-end no-gutters">
-                                <div class="col-auto"><button type="button" class="btn btn-light text-muted"
-                                        data-dismiss="modal">Cancel</button></div>
-                                <div class="col-auto"><button type="button" class="btn btn-danger px-4"
-                                        data-dismiss="modal" (click)="delete()">Delete</button></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

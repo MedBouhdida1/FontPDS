@@ -16,6 +16,7 @@ import { UserAuthService } from './_Services/user-auth.service';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProjectsListComponent } from './projects-list/projects-list.component';
     RegisterComponent,
     ForbiddenComponent,
     ProjectsListComponent,
+    TeamComponent,
 
 
   ],

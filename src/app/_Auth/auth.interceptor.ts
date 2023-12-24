@@ -31,6 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         this.router.navigateByUrl('/login');
 
                     }
+                    console.log(err.status)
                     return throwError("something went wrong");
                 }
             )
