@@ -20,7 +20,7 @@ export class SupervisorServicesService {
   }
 
   //getProjectssBySupervisorId
-  getprojectsBySupervisorId(supervisorId: number) {
+  getprojectsBySupervisorId(supervisorId: string) {
     return this.http.get<Project[]>(`${this.baseUrl}/supervisors/${supervisorId}/projects`);
   }
 
@@ -33,7 +33,7 @@ export class SupervisorServicesService {
 
 
   //add project
-  addProject(project: Project, supervisorId: number) {
+  addProject(project: Project, supervisorId: string) {
     return this.http.post(`${this.baseUrl}/supervisors/${supervisorId}/projects`, project, { responseType: 'text' });
   }
 

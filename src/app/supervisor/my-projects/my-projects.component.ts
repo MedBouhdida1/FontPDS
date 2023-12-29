@@ -23,6 +23,8 @@ export class MyProjectsComponent implements OnInit {
 
 
   @ViewChild('myModal') myModal!: ElementRef;
+
+
   @ViewChild('myForm') myForm?: NgForm;
 
   constructor(

@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NoDataComponent } from './no-data/no-data.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { NoDataComponent } from './no-data/no-data.component';
     NoDataComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [SidebarComponent, NavbarComponent, FooterComponent, SpinnerComponent, NoDataComponent]
 })

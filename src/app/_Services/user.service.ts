@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:8282/api/v1/projects';
+  private baseUrl = 'http://localhost:8282/api/v1';
 
   constructor(
     private http: HttpClient,
@@ -16,7 +16,7 @@ export class UserService {
 
   // Get all projects
   getAllProjects(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+    return this.http.get(`${this.baseUrl}/projects`);
   }
 
 
@@ -66,6 +66,17 @@ export class UserService {
   // Delete Project
   deleteProject(projectId: string): Observable<string> {
     return this.http.delete<string>(`${this.baseUrl}/${projectId}`);
+  }
+
+  //enroll a project
+  enrollProject(projectId: string, studentid: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/students/${studentid}/projects/${projectId}`, null, { responseType: 'text' });
+  }
+
+
+  //getStudentByName
+  getStudentByName(name: string) {
+    return this.http.get(`${this.baseUrl}/students/${name}/name`);
   }
 
 

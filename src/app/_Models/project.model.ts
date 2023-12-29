@@ -8,7 +8,8 @@ export class Project {
         public description?: string,
         public timeline?: string,
         public document?: any,
-        public supervisorId?: Supervisor
+        public supervisorId?: Supervisor,
+        public team?: any
 
 
     ) {

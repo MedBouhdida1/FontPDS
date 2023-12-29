@@ -17,6 +17,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { TeamComponent } from './team/team.component';
+import { RequirementComponent } from './requirement/requirement.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TeamComponent } from './team/team.component';
     ForbiddenComponent,
     ProjectsListComponent,
     TeamComponent,
+    RequirementComponent,
 
 
   ],
