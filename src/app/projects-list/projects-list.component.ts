@@ -5,6 +5,8 @@ import { UserAuthService } from '../_Services/user-auth.service';
 import { Supervisor } from '../_Models/supervisor.model';
 import { UserService } from '../_Services/user.service';
 import { Student } from '../_Models/student.model';
+import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -19,11 +21,14 @@ export class ProjectsListComponent implements OnInit {
   ListProjet: Project[] = [];
   supervisor = new Supervisor();
   project = new Project();
-  student = new Student()
+  student = new Student();
+
   constructor(
     private supervisorServices: SupervisorServicesService,
     private userAuthService: UserAuthService,
-    private userService: UserService
+    private userService: UserService,
+    private Router: Router,
+    private toast: NgToastService
   ) { }
 
 
@@ -51,11 +56,19 @@ export class ProjectsListComponent implements OnInit {
   //enrollProject
 
   enrollProject(projectId: string) {
-    console.log(this.student.id);
-    this.userService.enrollProject(projectId, this.student.id!).subscribe(res => {
-
-      console.log(res);
-    })
+    // console.log(this.student.id);
+    if (this.student.project != null) {
+      this.toast.info({
+        detail: "Info",
+        summary: "You are already enrolled in a project"
+      })
+    }
+    else {
+      this.userService.enrollProject(projectId, this.student.id!).subscribe(res => {
+        console.log(res);
+      })
+    }
+    this.Router.navigateByUrl('/requirement/' + projectId);
   }
 
 

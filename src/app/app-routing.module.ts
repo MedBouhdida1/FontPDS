@@ -8,6 +8,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LoginGuard } from './_Auth/login-guard.guard';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { TeamComponent } from './team/team.component';
+import { RequirementComponent } from './requirement/requirement.component';
 
 const routes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [LoginGuard] },
   { path: 'projects', component: ProjectsListComponent, canActivate: [Authguard], data: { roles: ["Student", "Supervisor"] } },
+  { path: 'requirement/:id', component: RequirementComponent, canActivate: [Authguard], data: { roles: ["Student", "Supervisor"] } },
   { path: 'team/:id', component: TeamComponent, canActivate: [Authguard], data: { roles: ["Student", "Supervisor"] } },
   { path: 'dashboard', component: DashboardComponent, canActivate: [Authguard], data: { roles: ["Admin", "Student", "Supervisor"] } },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [Authguard], data: { roles: ["Admin"] } },

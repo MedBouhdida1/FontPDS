@@ -7,14 +7,7 @@
             </a>
         </li>
 
-        @if (UserRole=="Student") {
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard">
-                <i class=" icon-grid menu-icon"></i>
-                <span class="menu-title">Project</span>
-            </a>
-        </li>
-        }
+
 
 
 
@@ -29,6 +22,12 @@
 
                     <li class="nav-item"> <a class="nav-link" routerLink="/projects">List Projects</a>
                     </li>
+                    @if (UserRole=="Student") {
+                    <li class="nav-item"> <a class="nav-link" (click)="navigateToresuirement()">My
+                            Project</a>
+                    </li>
+                    }
+
                     @if(UserRole=="Supervisor"){
                     <li class="nav-item"> <a class="nav-link" routerLink="/supervisor/myprojects">My Projects</a>
                     </li>
@@ -39,7 +38,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard">
+            <a class="nav-link" (click)="navigateToTeam()">
                 <i class=" icon-grid menu-icon"></i>
                 <span class="menu-title">My Team</span>
             </a>

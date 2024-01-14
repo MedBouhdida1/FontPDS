@@ -5,6 +5,7 @@ import { SupervisorServicesService } from '../Services/supervisor-services.servi
 import { UserAuthService } from '../../_Services/user-auth.service';
 import { NgForm } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
+import { copyFileSync } from 'node:fs';
 
 
 
@@ -13,6 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
   templateUrl: './my-projects.component.html',
   styleUrl: './my-projects.component.css'
 })
+
 export class MyProjectsComponent implements OnInit {
 
 
@@ -64,8 +66,9 @@ export class MyProjectsComponent implements OnInit {
   delete() {
     if (this.projectId) {
       this.supervisorServices.deleteProject(this.projectId).subscribe(res => {
-        console.log(res);
         this.getProjectBySupervisorId();
+
+        console.log(res);
         this.toast.success({
           detail: "Success",
           summary: "Project Deleted Successfully"
@@ -83,17 +86,30 @@ export class MyProjectsComponent implements OnInit {
   }
 
 
+  getSupervisorByName() {
+    this.supervisorServices.getSupervisorByName(this.userAuthService.getSubjectFromToken()).subscribe(res => {
+      this.supervisor = res;
+      console.log(this.supervisor.id)
+    })
+  }
+
 
   //view my projects
   getProjectBySupervisorId() {
-    this.supervisorServices.getSupervisorByName(this.userAuthService.getSubjectFromToken()).subscribe(res => {
+    this.supervisorServices.getSupervisorByName(this.userAuthService.getSubjectFromToken()).subscribe((res: Supervisor) => {
       this.supervisor = res;
-      this.supervisorServices.getprojectsBySupervisorId(this.supervisor.id!).subscribe(res => {
-        this.ListProjet = res;
-        console.log(this.ListProjet);
+      this.supervisorServices.getprojectsBySupervisorId(res.id!).subscribe(res => {
+        if (res.includes(null!)) {
+          this.ListProjet = []
+        }
+        else {
+          this.ListProjet = res;
+          console.log(this.ListProjet);
+        }
       })
-
     })
+
+
 
   }
 

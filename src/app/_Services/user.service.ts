@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +22,12 @@ export class UserService {
 
   // Get project by ID
   getProjectById(projectId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${projectId}`);
+    return this.http.get(`${this.baseUrl}/projects/${projectId}`);
   }
 
   // Get stages by project ID
   getStagesByProjectId(projectId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${projectId}/stages`);
+    return this.http.get(`${this.baseUrl}/projects${projectId}/stages`);
   }
 
   // Get stage by ID
@@ -51,15 +51,23 @@ export class UserService {
   }
 
   // Download specification book PDF
-  downloadDoc(projectId: string): Observable<Blob> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/pdf',
-      'Accept': 'application/pdf',
-    });
+  // downloadDoc(projectId: string): Observable<Blob> {
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/pdf',
+  //     'Accept': 'application/pdf',
+  //   });
 
-    return this.http.get(`${this.baseUrl}/${projectId}/document`, {
+  //   return this.http.get(`${this.baseUrl}/${projectId}/document`, {
+  //     responseType: 'blob',
+  //     headers: headers,
+  //   });
+  // }
+  downloadDocument(projectId: string): Observable<HttpResponse<Blob>> {
+    const url = `http://localhost:8080/api/v1/projects/${projectId}/document`;
+
+    return this.http.get(url, {
       responseType: 'blob',
-      headers: headers,
+      observe: 'response',
     });
   }
 
@@ -77,6 +85,15 @@ export class UserService {
   //getStudentByName
   getStudentByName(name: string) {
     return this.http.get(`${this.baseUrl}/students/${name}/name`);
+  }
+
+  uploadDocument(projectId: string, pdfFile: File) {
+    const formData: FormData = new FormData();
+    formData.append('pdf', pdfFile, pdfFile.name);
+
+    const url = `${this.baseUrl}/projects/${projectId}/document`;
+
+    return this.http.post(url, formData, { responseType: 'text' })
   }
 
 
