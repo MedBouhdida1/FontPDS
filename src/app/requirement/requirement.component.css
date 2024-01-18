@@ -1,3 +1,27 @@
 a {
     cursor: pointer;
 }
+
+.hover-info {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Style for the button */
+.hover-button {
+    position: relative;
+}
+
+/* Show the hover information when button is hovered */
+.hover-button:hover .hover-info {
+    display: block;
+}
+
+.badge {
+    padding: 5px 10px;
+}

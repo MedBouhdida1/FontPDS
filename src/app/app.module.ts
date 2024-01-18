@@ -18,6 +18,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { TeamComponent } from './team/team.component';
 import { RequirementComponent } from './requirement/requirement.component';
+import { StagesListComponent } from './stages-list/stages-list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RequirementComponent } from './requirement/requirement.component';
     ProjectsListComponent,
     TeamComponent,
     RequirementComponent,
+    StagesListComponent,
 
 
   ],

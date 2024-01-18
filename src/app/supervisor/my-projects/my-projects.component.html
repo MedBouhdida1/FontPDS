@@ -195,6 +195,8 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addproject">Add
                         Project</button>
                 </div>
+                <br>
+                <br>
 
 
 
@@ -202,17 +204,17 @@
                     @for (project of ListProjet; track project!.id) {
 
                     <div class="card">
-                        <div class="card-header" id="headingOne">
+                        <div class="card-header d-flex justify-content-between " id="headingOne">
                             <button class="btn btn-link" data-toggle="collapse"
                                 [attr.data-target]="'#collapseOne'+ project.id" aria-expanded="false"
                                 aria-controls="collapseOne">
-
                                 <h4 class="card-title"> {{project.title}}</h4>
+
+
                             </button>
-                            <div class="d-flex justify-content-end">
-                                <button routerLink="/team/{{project.id}}" type="button" class="btn btn-info">View My
-                                    Team</button>
-                            </div>
+                            <button routerLink="/team/{{project.id}}" style="height: min-content;" type="button"
+                                class="btn btn-info">View My
+                                Team</button>
 
                         </div>
 
@@ -230,9 +232,12 @@
                                 </blockquote>
                                 <h4 class="card-title text-info">Timeline : <span class="card-title">
                                         {{project.timeline}}</span></h4>
-                                <div class="d-flex justify-content-end"> <button class="btn btn-danger  "
-                                        id="modal-button" data-toggle="modal" data-target="#my-modal"
-                                        (click)="openModal(project.id!)">
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-primary " style="margin-right: 5px;"
+                                        routerLink="/requirement/{{project.id}}">
+                                        Project Details</button>
+                                    <button class="btn btn-danger  " id="modal-button" data-toggle="modal"
+                                        data-target="#my-modal" (click)="openModal(project.id!)">
                                         Delete</button>
                                 </div>
                             </div>

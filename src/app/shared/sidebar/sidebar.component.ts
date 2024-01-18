@@ -27,7 +27,6 @@ export class SidebarComponent implements OnInit {
   getUser() {
     this.userService.getStudentByName(this.userAuthService.getSubjectFromToken()).subscribe(res => {
       this.student = res;
-      console.log(this.student);
     })
   }
 

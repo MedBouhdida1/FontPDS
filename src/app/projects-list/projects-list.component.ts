@@ -22,7 +22,7 @@ export class ProjectsListComponent implements OnInit {
   supervisor = new Supervisor();
   project = new Project();
   student = new Student();
-
+  projectId?: string;
   constructor(
     private supervisorServices: SupervisorServicesService,
     private userAuthService: UserAuthService,
@@ -66,6 +66,11 @@ export class ProjectsListComponent implements OnInit {
     else {
       this.userService.enrollProject(projectId, this.student.id!).subscribe(res => {
         console.log(res);
+        this.toast.success({
+          detail: "Success",
+          summary: "Project Enrolled Successfully"
+
+        })
       })
     }
     this.Router.navigateByUrl('/requirement/' + projectId);
@@ -77,6 +82,11 @@ export class ProjectsListComponent implements OnInit {
       this.student = res;
       console.log(this.student);
     })
+  }
+
+
+  openModal(projectId: string): void {
+    this.projectId = projectId;
   }
 
 

@@ -97,4 +97,15 @@ export class UserService {
   }
 
 
+  //leave a project 
+  leaveProject(projectId: string, studentid: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/students/${studentid}/projects/${projectId}`, { responseType: 'text' });
+  }
+
+
+  validateDocument(projectId: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/projects/document/${projectId}`, null, { responseType: 'text' });
+  }
+
+
 } 
