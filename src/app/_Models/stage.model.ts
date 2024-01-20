@@ -5,13 +5,11 @@ import { Task } from "./task.model";
 export class Stage {
 
     constructor(
-        public id?: number,
+        public id?: string,
         public name?: string,
-        public tasks?: Task[],
+        public tasks: Task[] = [],
         public comments?: Comment[],
         public project?: Project,
-        public photo?: String,
-        public events?: Event[]
 
     ) {
     }

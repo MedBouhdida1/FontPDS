@@ -1,12 +1,15 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { Stage } from '../_Models/stage.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private baseUrl = 'http://localhost:8282/api/v1';
+
+  sharedData: string = ""
 
   constructor(
     private http: HttpClient,
@@ -27,12 +30,12 @@ export class UserService {
 
   // Get stages by project ID
   getStagesByProjectId(projectId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/projects${projectId}/stages`);
+    return this.http.get(`${this.baseUrl}/projects/${projectId}/stages`);
   }
 
   // Get stage by ID
   getStage(stageId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/stages/${stageId}`);
+    return this.http.get(`${this.baseUrl}/projects/stages/${stageId}`);
   }
 
   // Get tasks by stage ID
@@ -105,6 +108,29 @@ export class UserService {
 
   validateDocument(projectId: string): Observable<any> {
     return this.http.put(`${this.baseUrl}/projects/document/${projectId}`, null, { responseType: 'text' });
+  }
+
+  addStage(projectId: string, stage: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/projects/${projectId}/stages`, stage, { responseType: 'text' });
+  }
+
+
+  deleteStage(stageId: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/projects/stages/${stageId}`, { responseType: 'text' });
+  }
+
+  addTask(stageId: string, task: any, studentId: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/students/${studentId}/stages/${stageId}/tasks`, task, { responseType: 'text' });
+
+  }
+
+  getTasksByStageId(stageId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/projects/stages/${stageId}/tasks`);
+  }
+
+
+  updateTaskState(projectId: string, taskId: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/projects/${projectId}/tasks/${taskId}`, null, { responseType: 'text' });
   }
 
 

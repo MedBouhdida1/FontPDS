@@ -9,6 +9,8 @@ import { LoginGuard } from './_Auth/login-guard.guard';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { TeamComponent } from './team/team.component';
 import { RequirementComponent } from './requirement/requirement.component';
+import { StagesListComponent } from './stages-list/stages-list.component';
+import { TasksListComponent } from './tasks-list/tasks-list.component';
 
 const routes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent },
@@ -22,6 +24,9 @@ const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [Authguard], data: { roles: ["Admin"] } },
   { path: 'student', loadChildren: () => import('./student/student.module').then(m => m.StudentModule), canActivate: [Authguard], data: { roles: ["Student"] } },
   { path: 'supervisor', loadChildren: () => import('./supervisor/supervisor.module').then(m => m.SupervisorModule), canActivate: [Authguard], data: { roles: ["Supervisor"] } },
+  { path: 'stages/:id', component: StagesListComponent, canActivate: [Authguard], data: { roles: ["Student", "Supervisor"] } },
+  { path: 'tasks/:id', component: TasksListComponent, canActivate: [Authguard], data: { roles: ["Student", "Supervisor"] } },
+
 ];
 
 @NgModule({

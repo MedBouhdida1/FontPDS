@@ -19,6 +19,8 @@ import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { TeamComponent } from './team/team.component';
 import { RequirementComponent } from './requirement/requirement.component';
 import { StagesListComponent } from './stages-list/stages-list.component';
+import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { StagesListComponent } from './stages-list/stages-list.component';
     TeamComponent,
     RequirementComponent,
     StagesListComponent,
+    TasksListComponent,
 
 
   ],
@@ -40,7 +43,8 @@ import { StagesListComponent } from './stages-list/stages-list.component';
     SharedModule,
     FormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    CommonModule
 
 
   ],

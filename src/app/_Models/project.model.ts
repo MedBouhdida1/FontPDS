@@ -1,3 +1,4 @@
+import { Stage } from "./stage.model";
 import { Supervisor } from "./supervisor.model";
 
 export class Project {
@@ -9,7 +10,8 @@ export class Project {
         public timeline?: string,
         public document?: any,
         public supervisorId?: Supervisor,
-        public team?: any
+        public team?: any,
+        public stages?: Stage[]
 
 
     ) {
