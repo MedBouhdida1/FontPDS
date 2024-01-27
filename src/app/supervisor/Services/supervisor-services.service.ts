@@ -9,7 +9,7 @@ export class SupervisorServicesService {
 
 
   baseUrl = "http://localhost:8282/api/v1";
-  requestHeader = new HttpHeaders({ 'No-Auth': 'True' })
+  // requestHeader = new HttpHeaders({ 'No-Auth': 'True' })
 
   constructor(private http: HttpClient) { }
 

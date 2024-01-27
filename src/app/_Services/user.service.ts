@@ -50,7 +50,7 @@ export class UserService {
 
   // Get comments by stage ID
   getCommentsStage(stageId: string): Observable<any> {
-    return this.http.get<Comment[]>(`${this.baseUrl}/stages/${stageId}/comments`);
+    return this.http.get<Comment[]>(`${this.baseUrl}/projects/stages/${stageId}/comments`);
   }
 
   // Download specification book PDF
@@ -88,6 +88,11 @@ export class UserService {
   //getStudentByName
   getStudentByName(name: string) {
     return this.http.get(`${this.baseUrl}/students/${name}/name`);
+  }
+
+  //get Supervisor by name
+  getSupervisorByName(name: string) {
+    return this.http.get(`${this.baseUrl}/supervisors/${name}/name`);
   }
 
   uploadDocument(projectId: string, pdfFile: File) {
@@ -131,6 +136,19 @@ export class UserService {
 
   updateTaskState(projectId: string, taskId: string): Observable<any> {
     return this.http.put(`${this.baseUrl}/projects/${projectId}/tasks/${taskId}`, null, { responseType: 'text' });
+  }
+
+
+  deleteTask(taskId: string, stageId: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/projects/stages/${stageId}/tasks/${taskId}`, { responseType: 'text' });
+  }
+
+  addComment(supervisorId: string, stageId: string, comment: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/supervisors/${supervisorId}/stages/${stageId}/comments`, comment, { responseType: 'text' });
+  }
+
+  setTaskPending(projectId: string, taskId: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/projects/${projectId}/tasks/${taskId}/pending`, null, { responseType: 'text' });
   }
 
 

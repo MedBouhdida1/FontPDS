@@ -1,0 +1,17 @@
+.input-group {
+    padding: 10px;
+    /* border-top: 1px solid #ccc; */
+    background-color: #fff;
+}
+
+textarea {
+    resize: none;
+    /* width: 100% !important; */
+    /* Adjust the width as needed */
+}
+
+.custom-input {
+    width: 90%;
+    /* Adjust the width as needed */
+    /* You can also use a fixed width value like '200px' if you prefer */
+}

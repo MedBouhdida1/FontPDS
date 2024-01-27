@@ -3,6 +3,7 @@ import { UserService } from '../_Services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../_Models/project.model';
 import { Stage } from '../_Models/stage.model';
+import { UserAuthService } from '../_Services/user-auth.service';
 
 @Component({
   selector: 'app-stages-list',
@@ -13,6 +14,8 @@ export class StagesListComponent implements OnInit {
 
 
 
+  roles: any[] = []
+  userRole?: string
   projectId: string = this.route.snapshot.params['id'];
   project = new Project();
   stages: Stage[] = []
@@ -20,9 +23,12 @@ export class StagesListComponent implements OnInit {
     title: null
 
   };
+
+  stageId?: string
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userAuhtService: UserAuthService
   ) { }
 
 
@@ -49,6 +55,11 @@ export class StagesListComponent implements OnInit {
     })
   }
 
+  OpenDeleteModal(stageId: string) {
+    this.stageId = stageId
+    console.log(this.stageId)
+  }
+
   deleteStage(stageId: string) {
 
     this.userService.deleteStage(stageId).subscribe(res => {
@@ -57,9 +68,18 @@ export class StagesListComponent implements OnInit {
     })
   }
 
+  getUserRole() {
+    this.roles = this.userAuhtService.getRoles();
+    if (this.roles.length > 0) {
+      this.userRole = this.roles[0].roleName;
+      console.log(this.userRole)
+    }
+  }
+
 
   ngOnInit(): void {
     this.getProjectById();
+    this.getUserRole()
 
   }
 

@@ -198,8 +198,11 @@
                             <br>
                             <div class="d-flex justify-content-between">
                                 <h4 class="font-weight-bold">Stages :</h4>
+                                @if (userRole=="Student") {
                                 <button type="button" class="btn btn-primary btn-rounded btn-fw" id="modal-button"
                                     data-toggle="modal" data-target="#my-modal">Add Stage</button>
+                                }
+
                             </div>
                             <br>
                             @for (stage of stages; track stage.id; let idx = $index) {
@@ -211,8 +214,12 @@
                                         content.</p> -->
                                     <a (click)="showTasks(idx+1)" class="btn btn-primary"
                                         routerLink="/tasks/{{stage.id}}">Show Tasks</a>
-                                    <a (click)="deleteStage(stage.id!)" class="btn btn-danger"
-                                        style="margin-left: 10px;">Delete stage</a>
+                                    @if (userRole=="Student") {
+                                    <a (click)="OpenDeleteModal(stage.id!)" class="btn btn-danger"
+                                        style="margin-left: 10px;" data-toggle="modal" data-target="#my-modal1">Delete
+                                        stage</a>
+                                    }
+
 
                                 </div>
                                 <div class="card-footer text-muted">
@@ -258,6 +265,35 @@
                                         data-dismiss="modal">Cancel</button></div>
                                 <div class="col-auto"><button type="button" class="btn btn-primary px-4"
                                         data-dismiss="modal" (click)="addStage()">Confirm</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center">
+
+    <div id="my-modal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-body p-0">
+                    <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                        <div class="card-header pb-0 bg-white border-0 ">
+                            <div class="row">
+                                <div class="col ml-auto"><button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div>
+                            </div>
+                            <p class="font-weight-bold mb-2">Confirm Deleting this stage</p>
+                        </div>
+                        <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
+                            <div class="row justify-content-end no-gutters">
+                                <div class="col-auto"><button type="button" class="btn btn-light text-muted"
+                                        data-dismiss="modal">Cancel</button></div>
+                                <div class="col-auto"><button type="button" class="btn btn-primary px-4"
+                                        data-dismiss="modal" (click)="deleteStage(stageId!)">Confirm</button></div>
                             </div>
                         </div>
                     </div>

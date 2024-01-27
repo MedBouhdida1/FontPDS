@@ -5,7 +5,7 @@ export class Task {
         public title?: string,
         public description?: string,
         public status?: string,
-        public createdBy?: string,
+        public createdby?: string,
         public photo?: String,
         public events?: Event[]
 
