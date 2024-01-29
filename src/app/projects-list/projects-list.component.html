@@ -190,52 +190,56 @@
         <app-sidebar></app-sidebar>
         <div class="main-panel">
             <div class="content-wrapper">
-                <h3 class="card-title title"> Projects list</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title title"> Projects list</h3>
 
-                <div id="accordion">
-                    @for (project of ListProjet; track project.id) {
+                        <div id="accordion">
+                            @for (project of ListProjet; track project.id) {
 
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse"
-                                    [attr.data-target]="'#collapseOne'+ project.id" aria-expanded="false"
-                                    aria-controls="collapseOne">
-                                    <h4 class="card-title"> {{project.title}}</h4>
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                            [attr.data-target]="'#collapseOne'+ project.id" aria-expanded="false"
+                                            aria-controls="collapseOne">
+                                            <h4 class="card-title"> {{project.title}}</h4>
 
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseOne{{project.id}}" class="collapse" aria-labelledby="headingOne"
-                            data-parent="#accordion">
-                            <div class="card-body">
-                                <h4 class="card-title text-info">Supervisor : <span class="card-title">
-                                        {{project.supervisorId?.name}}</span>
-                                </h4>
-                                <p></p>
-                                <h4 class=" card-title text-info">Description : </h4>
-
-                                <blockquote class="blockquote">
-                                    <p class="mb-0">{{project.description}}</p>
-                                </blockquote>
-                                <h4 class="card-title text-info">Timeline : <span class="card-title">
-                                        {{project.timeline}}</span></h4>
-                                @if (UserRole=="Student") {
-                                <div class="d-flex justify-content-end"><button type="button" class="btn btn-primary"
-                                        id="modal-button" data-toggle="modal" data-target="#my-modal"
-                                        (click)="openModal(project.id!)">Enroll</button>
+                                        </button>
+                                    </h5>
                                 </div>
-                                }
 
+                                <div id="collapseOne{{project.id}}" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-info">Supervisor : <span class="card-title">
+                                                {{project.supervisorId?.name}}</span>
+                                        </h4>
+                                        <p></p>
+                                        <h4 class=" card-title text-info">Description : </h4>
+
+                                        <blockquote class="blockquote">
+                                            <p class="mb-0">{{project.description}}</p>
+                                        </blockquote>
+                                        <h4 class="card-title text-info">Timeline : <span class="card-title">
+                                                {{project.timeline}}</span></h4>
+                                        @if (UserRole=="Student") {
+                                        <div class="d-flex justify-content-end"><button type="button"
+                                                class="btn btn-primary" id="modal-button" data-toggle="modal"
+                                                data-target="#my-modal" (click)="openModal(project.id!)">Enroll</button>
+                                        </div>
+                                        }
+
+                                    </div>
+                                </div>
                             </div>
+                            }
+                            @empty {
+                            <app-no-data></app-no-data>
+                            }
+
                         </div>
                     </div>
-                    }
-                    @empty {
-                    <app-no-data></app-no-data>
-                    }
-
                 </div>
             </div>
             <app-footer></app-footer>

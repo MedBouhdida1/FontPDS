@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 import { Comment } from '../_Models/comment.model';
 import { Supervisor } from '../_Models/supervisor.model';
 import { SupervisorServicesService } from '../supervisor/Services/supervisor-services.service';
+import { Task } from '../_Models/task.model';
 
 @Component({
   selector: 'app-tasks-list',
@@ -19,7 +20,7 @@ import { SupervisorServicesService } from '../supervisor/Services/supervisor-ser
 export class TasksListComponent implements OnInit {
 
 
-
+  p: number = 1
   tasks: any[] = []
 
   stage = new Stage()

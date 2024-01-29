@@ -41,7 +41,47 @@ export class DashboardComponent implements OnInit {
     private userService: UserService
   ) { }
 
+  closeRightSidebar() {
+    const rightSidebarElement = document.getElementById('right-sidebar');
 
+    if (rightSidebarElement) {
+      rightSidebarElement.classList.remove('open');
+    }
+  }
+
+  getValidateTaskCount(project: any): number {
+    if (project.stages) {
+      let count = 0
+      for (const stage of project.stages) {
+        if (stage.tasks) {
+          for (const task of stage.tasks) {
+            if (task.status == "done") {
+              count++
+            }
+          }
+        }
+      }
+      return count
+    }
+    return 0
+  }
+
+  getPendingTaskCount(project: any): number {
+    if (project.stages) {
+      let count = 0
+      for (const stage of project.stages) {
+        if (stage.tasks) {
+          for (const task of stage.tasks) {
+            if (task.status == "pending") {
+              count++
+            }
+          }
+        }
+      }
+      return count
+    }
+    return 0
+  }
 
   getUser() {
     this.username = this.userAuthService.getSubjectFromToken();

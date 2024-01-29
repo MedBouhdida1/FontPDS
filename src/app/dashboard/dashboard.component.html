@@ -27,7 +27,7 @@
             </div>
         </div>
         <div id="right-sidebar" class="settings-panel">
-            <i class="settings-close ti-close"></i>
+            <i class="settings-close ti-close" (click)="closeRightSidebar()"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
@@ -188,7 +188,7 @@
                                 <div class="card card-tale">
                                     <div class="card-body">
                                         <p class="mb-4">Enrolled project</p>
-                                        <p class="fs-30 mb-2">{{student.project?.title}}</p>
+                                        <p class="fs-20 mb-3">{{student.project?.title}}</p>
                                         <!-- <p>10.00% (30 days)</p> -->
                                     </div>
                                 </div>
@@ -319,16 +319,21 @@
                                                 <td class="pl-0">{{project.title}}</td>
                                                 <td>
                                                     <p class="mb-0"><span
-                                                            class="font-weight-bold mr-2">{{project.stages.length}}</span>(2.15%)
+                                                            class="font-weight-bold mr-2">{{project.stages.length}}</span>
                                                     </p>
                                                 </td>
-                                                <td class="badge badge-success">
-                                                    <!-- @for (stage of project.stages; track stage.id) {
+                                                <td>
+                                                    <div class="badge bg-success">
+                                                        {{ getValidateTaskCount(project) }} Tasks
 
-
-                                                    } -->
+                                                    </div>
                                                 </td>
-                                                <td class="text-muted">51</td>
+                                                <td>
+                                                    <div class="badge badge-warning">
+                                                        {{ getPendingTaskCount(project) }} Tasks
+
+                                                    </div>
+                                                </td>
 
                                             </tr>
                                             }

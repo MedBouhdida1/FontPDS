@@ -20,7 +20,13 @@ export class NavbarComponent implements OnInit {
   ) { }
 
 
+  openRightSidebar() {
+    const rightSidebarElement = document.getElementById('right-sidebar');
 
+    if (rightSidebarElement) {
+      rightSidebarElement.classList.add('open');
+    }
+  }
 
   getUserRole() {
     this.roles = this.userAuthService.getRoles();

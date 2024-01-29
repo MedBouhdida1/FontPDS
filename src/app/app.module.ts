@@ -21,6 +21,7 @@ import { RequirementComponent } from './requirement/requirement.component';
 import { StagesListComponent } from './stages-list/stages-list.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     HttpClientModule,
     NgToastModule,
-    CommonModule
+    CommonModule,
+    NgxPaginationModule
 
 
   ],
